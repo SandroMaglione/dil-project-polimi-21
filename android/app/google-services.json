@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1069121887716",
+    "project_id": "digitial-innovation-lab",
+    "storage_bucket": "digitial-innovation-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069121887716:android:21884443b26cad8057fbf1",
+        "android_client_info": {
+          "package_name": "com.sandromaglione.polimi.dil.dil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069121887716-kgl87lasj5iugnlte88o9tb9uhdgea8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuAU1BxR615iuGWEUBhLLK6Fl84uVBQ8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069121887716-kgl87lasj5iugnlte88o9tb9uhdgea8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

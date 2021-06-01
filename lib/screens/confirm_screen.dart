@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dil/constant.dart';
 import 'package:dil/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -141,17 +142,31 @@ class ConfirmScreen extends StatelessWidget {
 
   void _confirm(BuildContext context) {
     FirebaseFirestore.instance.collection('order').doc(order.docId).update({
-      'assigned': true,
+      'assigned': carrierId,
     }).then(
       (value) => context.router.pop(),
     );
   }
 
-  void _refuse(BuildContext context) {
-    FirebaseFirestore.instance.collection('order').doc(order.docId).update({
-      'refused': true,
-    }).then(
-      (value) => context.router.pop(),
-    );
+  void _refuse(BuildContext context) async {
+    final data = (await FirebaseFirestore.instance
+            .collection('order')
+            .doc(order.docId)
+            .get())
+        .data()?['refused'] as List<dynamic>?;
+
+    if (data == null) {
+      FirebaseFirestore.instance.collection('order').doc(order.docId).update({
+        'refused': [carrierId],
+      }).then(
+        (value) => context.router.pop(),
+      );
+    } else {
+      FirebaseFirestore.instance.collection('order').doc(order.docId).update({
+        'refused': [...data, carrierId],
+      }).then(
+        (value) => context.router.pop(),
+      );
+    }
   }
 }

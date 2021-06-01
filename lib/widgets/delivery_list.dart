@@ -62,7 +62,9 @@ class DeliveryList extends StatelessWidget {
                         children: [
                           Expanded(child: Text('${order.nr}'), flex: 1),
                           Expanded(child: Text(order.address), flex: 2),
-                          Expanded(child: Text(order.time), flex: 1),
+                          Expanded(
+                              child: Text(order.time.seconds.toString()),
+                              flex: 1),
                         ],
                       ),
                     ),

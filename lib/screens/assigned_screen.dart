@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dil/constant.dart';
 import 'package:dil/models/order_model.dart';
 import 'package:dil/widgets/delivery_list.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class AssignedScreen extends StatefulWidget {
 class _AssignedScreenState extends State<AssignedScreen> {
   final orders = FirebaseFirestore.instance.collection('order').where(
         'assigned',
-        isEqualTo: true,
+        isEqualTo: carrierId,
       );
 
   @override

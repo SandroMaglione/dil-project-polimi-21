@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dil/constant.dart';
 import 'package:dil/models/order_model.dart';
 import 'package:dil/router/app_router.gr.dart';
 import 'package:dil/widgets/delivery_list.dart';
@@ -11,13 +12,37 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  final orders = FirebaseFirestore.instance
-      .collection('order')
-      .where(
-        'assigned',
-        isEqualTo: false,
-      )
-      .where('refused', isEqualTo: false);
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      getAllAvailableOrders() async {
+    final allOrders =
+        (await FirebaseFirestore.instance.collection('order').get()).docs;
+    final assigned = (await FirebaseFirestore.instance
+            .collection('order')
+            .where(
+              'assigned',
+              isEqualTo: carrierId,
+            )
+            .get())
+        .docs;
+    final refused = (await FirebaseFirestore.instance
+            .collection('order')
+            .where('refused', arrayContains: carrierId)
+            .get())
+        .docs;
+
+    return allOrders
+        .where(
+          (all) => !assigned.any(
+            (any) => any.id == all.id,
+          ),
+        )
+        .where(
+          (all) => !refused.any(
+            (any) => any.id == all.id,
+          ),
+        )
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,18 +97,22 @@ class _OrderScreenState extends State<OrderScreen> {
                   ),
                   Expanded(
                     child: FutureBuilder(
-                      future: orders.get(),
-                      builder:
-                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      future: getAllAvailableOrders(),
+                      builder: (context,
+                          AsyncSnapshot<
+                                  List<
+                                      QueryDocumentSnapshot<
+                                          Map<String, dynamic>>>>
+                              snapshot) {
                         // Check for errors
                         if (snapshot.hasError) {
                           return Text('Error...');
                         }
 
                         if (snapshot.connectionState == ConnectionState.done) {
-                          final fetchOrderList = snapshot.data?.docs.map(
+                          final fetchOrderList = snapshot.data?.map(
                             (e) {
-                              final data = e.data() as Map<String, dynamic>;
+                              final data = e.data();
                               return Order(
                                 e.id,
                                 data['nr'],

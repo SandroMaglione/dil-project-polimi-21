@@ -21,17 +21,17 @@ class _AssignedScreenState extends State<AssignedScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('RocketDelivery'),
-          leading: Icon(Icons.podcasts),
+          leading: Icon(Icons.flight_takeoff_rounded),
           elevation: 0,
           backgroundColor: Colors.indigo,
           actions: [
-            IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: null,
+            //   icon: Icon(
+            //     Icons.person,
+            //     color: Colors.white,
+            //   ),
+            // ),
           ],
         ),
         body: Stack(

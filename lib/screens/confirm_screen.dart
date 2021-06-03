@@ -3,6 +3,7 @@ import 'package:dil/constant.dart';
 import 'package:dil/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:intl/intl.dart';
 
 class ConfirmScreen extends StatelessWidget {
   final Order order;
@@ -14,17 +15,17 @@ class ConfirmScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('RocketDelivery'),
-          leading: Icon(Icons.podcasts),
+          leading: Icon(Icons.flight_takeoff_rounded),
           elevation: 0,
           backgroundColor: Colors.indigo,
           actions: [
-            IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: null,
+            //   icon: Icon(
+            //     Icons.person,
+            //     color: Colors.white,
+            //   ),
+            // ),
           ],
         ),
         body: Stack(
@@ -76,7 +77,7 @@ class ConfirmScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Time: ${order.time}',
+                          'Time: ${DateFormat('dd MMMM, HH:mm').format(order.time.toDate())}',
                           style: TextStyle(
                             fontWeight: FontWeight.w900,
                             color: Colors.indigo.withOpacity(0.9),

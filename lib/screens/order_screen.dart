@@ -50,7 +50,7 @@ class _OrderScreenState extends State<OrderScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('RocketDelivery'),
-          leading: Icon(Icons.podcasts),
+          leading: Icon(Icons.flight_takeoff_rounded),
           elevation: 0,
           backgroundColor: Colors.indigo,
           actions: [
@@ -61,13 +61,13 @@ class _OrderScreenState extends State<OrderScreen> {
                 color: Colors.white,
               ),
             ),
-            IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-            ),
+            // IconButton(
+            //   onPressed: null,
+            //   icon: Icon(
+            //     Icons.person,
+            //     color: Colors.white,
+            //   ),
+            // ),
           ],
         ),
         body: Stack(

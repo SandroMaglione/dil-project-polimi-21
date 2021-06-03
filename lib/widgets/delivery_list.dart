@@ -1,5 +1,6 @@
 import 'package:dil/models/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DeliveryList extends StatelessWidget {
   final List<Order> dataList;
@@ -39,7 +40,7 @@ class DeliveryList extends StatelessWidget {
               children: [
                 Expanded(child: Text('#nr'), flex: 1),
                 Expanded(child: Text('Address'), flex: 2),
-                Expanded(child: Text('Time'), flex: 1),
+                Expanded(child: Text('Time'), flex: 2),
               ],
             ),
           ),
@@ -63,8 +64,9 @@ class DeliveryList extends StatelessWidget {
                           Expanded(child: Text('${order.nr}'), flex: 1),
                           Expanded(child: Text(order.address), flex: 2),
                           Expanded(
-                              child: Text(order.time.seconds.toString()),
-                              flex: 1),
+                              child: Text(DateFormat('dd MMMM, HH:mm')
+                                  .format(order.time.toDate())),
+                              flex: 2),
                         ],
                       ),
                     ),
